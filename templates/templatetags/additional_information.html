@@ -1,0 +1,15 @@
+        {% if add_inf.count > 0 %}
+        <table>
+            <tbody>
+            {% for item in add_inf %}
+                <tr>
+                    <td>
+                        <strong>{{ item.title }}</strong><br>
+                        {{ item.descriptions }}
+                    </td>
+                    <td class="textalign-right">{{ item.price }} р.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}

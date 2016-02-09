@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load extratags thumbnail %}
+{% block meta %}
+        <meta name="keywords" content="{% keywords album.id%}">
+        <meta name="description" content="Просмотр работ мастера ногтевого сервиса">
+{% endblock %}
+{% block title %}{{ album.tos.name}}{% endblock %}
+
+{% block content %}
+<div id="wrapper">
+			<div id="core">
+				<div id="page-header">
+					<div class="container">
+						<h1>{{ album.tos.name}}</h1>
+					</div>
+				</div>
+				<div id="page-content">
+					<div class="various-content">
+						<div class="c-gallery">
+							<div class="thumb-list">
+                                {% for item in album.photo_set.all %}
+								<div class="thumb">
+                                {% thumbnail item.file "1024x768" crop="center" watermark='smolnails.ru' quality=80 as im1 %}
+								<a href="{{ im1.url }}" class="lightbox" data-lightbox-group="gallery">
+                                    {% thumbnail item.file "400x300" crop="center" watermark='smolnails.ru' quality=80 as im2 %}
+								        <img src="{{ im2.url }}" alt="">
+                                    {% endthumbnail %}
+								</a>
+                                {% endthumbnail %}
+								</div>
+                                {% endfor %}
+							</div>
+						</div>
+						<div class="container">
+							<p>{{ album.description }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% footer_tag %}
+		</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+								<div class="sidebar-widget sidebar-links">
+									<h3 class="widget-title">Категории</h3>
+									<div class="widget-content">
+										<ul>
+                                        {% for item in category %}
+											<li><a href="{% url 'category' item.slug %}">{{ item.name }}</a></li>
+                                        {% endfor %}
+										</ul>
+									</div>
+								</div>

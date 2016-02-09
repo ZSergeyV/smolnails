@@ -1,0 +1,13 @@
+								<div class="sidebar-widget sidebar-articles">
+									<h3 class="widget-title">Популярные статьи</h3>
+									<div class="widget-content">
+										<ul>
+                                        {% for item in post %}
+											<li>
+												<h4 class="article-title"><a href="{% url 'post' item.slug %}">{{ item.title }}</a></h4>
+												<p class="article-date">{{ item.created|date:"d M Y"}}</p>
+											</li>
+                                        {% endfor %}
+										</ul>
+									</div>
+								</div>

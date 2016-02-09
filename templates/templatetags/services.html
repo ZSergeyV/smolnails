@@ -1,0 +1,32 @@
+						<section>
+							<header>
+								<div class="container">
+									<h2>Услуги</h2>
+									<p class="subtitle">Мы предлагаем широкий спектр услуг красоты</p>
+									<p class="more"><a href="{% url 'services' %}" class="c-button m-type-2">Смотреть услуги</a></p>
+								</div>
+							</header>
+							<div class="c-service-list m-paginated" data-items="4" data-items-desktop="4" data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
+								<div class="container">
+									<div class="service-list-inner">
+                                        {% for ts in type_services %}
+										<div class="service-list-item">
+											<div class="c-service">
+												<div class="service-image">
+													<a href="{% url 'services' %}#{{ ts.slug }}">
+                                                        <img src="{{ ts.image.url }}" alt="{{ ts.name }}">
+                                                    </a>
+												</div>
+												<h3 class="service-title">
+                                                    <a href="{% url 'services' %}#{{ ts.slug }}">{{ ts.name }}</a>
+                                                </h3>
+												<div class="service-description">
+													<p>{{ ts.descriptions }}</p>
+												</div>
+											</div>
+										</div>
+                                        {% endfor %}
+									</div>
+								</div>
+							</div>
+						</section>

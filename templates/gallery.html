@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load extratags thumbnail %}
+{% block meta %}
+        <meta name="keywords" content="{% keywords %}">
+        <meta name="description" content="Работы мастера ногтевого сервиса">
+{% endblock %}
+{% block title %}Работы мастера{% endblock %}
+{% block content %}
+		<div id="wrapper">
+			<div id="core" class="core-bg-1">
+				<div id="page-header">
+					<div class="container">
+						<h1>Галерея</h1>
+						<ul class="breadcrumbs">
+							<li><a href="{% url 'index' %}">Главная</a></li>
+							<li>Галерея</li>
+						</ul>
+					</div>
+				</div>
+                <div class="container">
+				<div id="page-content">
+					<div class="various-content">
+                        <section>
+                            <h2>Мои работы</h2>
+                            <div class="row">
+                                {% for alb in album_list %}
+                                <div class="col-sm-6">
+                                    <div class="c-team-member m-has-portrait">
+                                        <div class="member-inner">
+                                            <a href="{{ alb.slug }}">
+                                                <p class="member-portrait">
+                                                    <span>
+                                                        {% thumbnail alb.tos.image.file "400x400" crop="center" quality=80 as im %}
+                                                        <img src="{{ im.url }}" alt="">
+                                                        {% endthumbnail %}
+                                                    </span>
+                                                </p>
+                                                <h4 class="member-name">{{ alb.tos.name }}</h4>
+                                            </a>
+                                            <h3 class="member-role">{{ alb.photo_set.count }} фотографий</h3>
+                                            <div class="member-description">
+                                                <p>{{ alb.description|truncatewords:15 }}</p>
+                                            </div>
+                                            <ul class="member-social">
+                                                <li><a href="http://vk.com/"><i class="fa fa-vk"></i></a></li>
+                                                <li><a href="http://ok.ru/"><i class="fa fa-odnoklassniki"></i></a></li>
+                                                <li><a href="http://instagram.com/"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <hr class="c-divider m-transparent m-x-small display-none-sm">
+                        </section>
+                    </div>
+                </div>
+            </div>
+            </div>
+        {% footer_tag %}
+        </div>
+{% endblock %}

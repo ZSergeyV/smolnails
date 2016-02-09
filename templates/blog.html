@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load extratags %}
+{% load thumbnail disqus_tags %}
+{% block title %}Статьи{% endblock %}
+{% block content %}
+		<div id="wrapper">
+			<div id="core">
+				<div id="page-header">
+					<div class="container">
+						<h1>Статьи</h1>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<div id="page-content">
+								<div class="blog-list">
+                                    {% for item in post_list %}
+									<article class="image">
+										<div class="article-image">
+											<a href="{{ item.slug }}">
+                                                {% thumbnail item.image "1024x440" crop="center" quality=80 as im %}
+                                                    <img src="{{ im.url }}" alt="{{ item.title }}">
+                                                {% empty %}
+                                                    <img src="http://placehold.it/1024x400?text={{ item.title }}" alt="{{ post.title }}">
+                                                {% endthumbnail %}
+                                            </a>
+										</div>
+										<header class="article-header">
+											<span class="article-date">{{ item.created|date:"d M Y" }}</span>
+											<h2 class="article-title"><a href="{% url 'post' item.slug %}">{{ item.title }}</a></h2>
+										</header>
+										<div class="article-content various-content">
+											<!-- <p class="lead">Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p> -->
+											<p style="text-align:justify">{{ item.description|truncatechars:300|safe }}</p>
+										</div>
+										<footer class="article-footer">
+											<ul class="article-info">
+												<!-- <li class="author">Просмотров {{ item.pageviews }}</li> -->
+												<li class="categories">
+                                                    {% for tag in item.tags.all %}
+                                                        <a href="{% url 'tags' tag.slug %}">{{ tag.name|title }}{% if not forloop.last %},{% endif %}</a>
+                                                    {% endfor %}
+                                                </li>
+												<li class="comments">
+                                                    <a href="{% url 'post' item.slug %}#disqus_thread"></a>{% disqus_num_replies %}
+                                                </li>
+											</ul>
+											<p class="article-more"><a href="{{ item.slug }}" class="c-button">Читать</a></p>
+										</footer>
+									</article>
+                                    {% endfor %}
+								</div>
+                                {% if is_paginated %}
+								<ul class="c-pagination">
+                                    {% if paginator.num_pages > 1 %}
+                                        {% if page_obj.has_previous %}
+                                            <li class="prev">
+                                                <a href="?page={{ page_obj.previous_page_number }}">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {% for num in paginator.page_range %}
+                                        {% if num == page_obj.number %}
+                                            <li class="m-active"><a href="?page={{ num }}">{{ num }}</a> </li>
+                                        {% else %}
+                                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if page_obj.has_next %}
+                                        <li class="next">
+                                            <a href="?page={{ page_obj.next_page_number }}">
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+								</ul>
+                                {% endif %}
+							</div>
+						</div>
+						<div class="col-md-4">
+							<aside id="sidebar">
+                                {% side_find %}
+                                {% side_category %}
+                                {% side_popular_post %}
+                                {% side_tags %}
+							</aside>
+						</div>
+					</div>
+				</div>
+			</div>
+        {% footer_tag %}
+		</div>
+{% endblock %}

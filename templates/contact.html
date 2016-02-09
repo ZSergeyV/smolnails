@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load extratags %}
+{% block title %}Контакты{% endblock %}
+{% block content %}
+		<div id="wrapper">
+			<div id="core">
+				<div id="page-header">
+					<div class="container">
+						<h1>Контакты</h1>
+					</div>
+				</div>
+				<div class="container">
+					<div id="page-content">
+						<div class="various-content">
+							<section>
+								<h2>Где вы можите найти меня</h2>
+								<div class="row">
+									<div class="col-lg-8">
+										<div class="c-map">
+											<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2301.1844217089074!2d32.01604831599779!3d54.77672507430993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTTCsDQ2JzM2LjIiTiAzMsKwMDEnMDUuNyJF!5e0!3m2!1sru!2sru!4v1447667177885" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<p>Вы можете оставить свой отзыв о моей работе, а также оставить свои замечания и пожелания, заполнив форму на этой странице.</p>
+										<div class="c-icon-block">
+											<i class="ico fa fa-map-marker"></i>
+											<div class="icon-block-inner">
+												<p>
+													<strong>SmolNails</strong><br>
+													9015 Sunset Boulevard<br>
+													Ca 90069
+												</p>
+											</div>
+										</div>
+										<div class="c-icon-block">
+											<i class="ico fa fa-clock-o"></i>
+											<div class="icon-block-inner">
+												<dl>
+													<dt>Пн. - Пя.:</dt>
+													<dd>10:00 - 16:00</dd>
+													<dt>Су.:</dt>
+													<dd>10:00 - 14:00</dd>
+													<dt>Воск.:</dt>
+													<dd>Выходной</dd>
+												</dl>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+							<section>
+								<h2>Оставить сообщения</h2>
+								<div class="row">
+									<div class="col-lg-8">
+										<form id="contact-form" class="default-form m-ajax-form" action="ajax/contact-form.php" method="post" >
+											<input type="hidden" name="contact-form">
+											<p class="c-alert-message m-warning m-request-error" style="display: none;"><i class="ico fa fa-exclamation-circle"></i>При отправке сообщения возникла ошибка. Попробуйте позже.</p>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-field">
+														<label for="contact-name">Ваше имя <span>*</span></label>
+														<input id="contact-name" name="contact-name" class="m-required">
+													</div>
+													<div class="form-field">
+														<label for="contact-email">Ваш Email адрес <span>*</span></label>
+														<input id="contact-email" name="contact-email" class="m-required m-email">
+													</div>
+													<p style="display: none;">
+														<label for="contact-email-hp">Re Email Address</label>
+														<input id="contact-email-hp" name="contact-email-hp">
+													</p>
+													<div class="form-field">
+														<label for="contact-phone">Ваш телефон</label>
+														<input id="contact-phone" name="contact-phone">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-field">
+														<label for="contact-subject">Тема сообщения</label>
+														<input id="contact-subject" name="contact-subject">
+													</div>
+													<div class="form-field">
+														<label for="contact-message">Сообщение <span>*</span></label>
+														<textarea id="contact-message" name="contact-message" class="m-required"></textarea>
+													</div>
+													<div class="form-field">
+														<button class="submit-btn c-button" type="submit" data-label="Send Message" data-loading-label="Отправка...">Отправить</button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="col-lg-4">
+										<div class="c-icon-block">
+											<i class="ico fa fa-info-circle"></i>
+											<div class="icon-block-inner">
+												<p>Предварительная запись к мастеру ногтевого сервиса.<br> Так же можно записаться по телефону 7(000)000-00-00</p>
+												<p><a href="{% url 'reservation-form' %}" class="c-button m-type-2 m-open-ajax-modal">Записаться</a></p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+        {% footer_tag %}
+		</div>
+{% endblock %}

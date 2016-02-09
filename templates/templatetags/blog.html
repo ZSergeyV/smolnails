@@ -1,0 +1,26 @@
+{% load thumbnail %}
+						<section>
+							<header>
+								<div class="container">
+									<h2>Блог</h2>
+									<p class="subtitle">Читайте о последних тенденциях в области ногтевого сервиса</p>
+									<p class="more"><a href="{% url 'blog' %}" class="c-button m-type-2">Читать</a></p>
+								</div>
+							</header>
+							<div class="container">
+								<div class="row">
+                                {% for item in post %}
+									<div class="col-sm-3">
+										<article class="c-article">
+											<div class="article-image"><a href="{% url 'post' item.slug %}">
+                                                        {% thumbnail item.image '500x350' crop="center" quality=80 as im %}
+                                                            <img src="{{ im.url }}" alt="{{ item.title }}">
+                                                        {% endthumbnail %}
+                                            </a></div>
+											<h3 class="article-title"><a href="{% url 'post' item.slug %}">{{ item.title }}</a></h3>
+										</article>
+									</div>
+								{% endfor %}
+								</div>
+							</div>
+						</section>

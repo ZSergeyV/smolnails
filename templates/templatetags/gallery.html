@@ -1,0 +1,23 @@
+{% load thumbnail %}
+						<section>
+							<header>
+								<div class="container">
+									<h2>Галерея</h2>
+									<p class="subtitle">Работы мастера</p>
+									<p class="more"><a href="{% url 'gallery' %}" class="c-button m-type-2">Открыть галерею</a></p>
+								</div>
+							</header>
+							<div class="c-gallery m-paginated" data-items="4" data-items-desktop="4" data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
+								<div class="thumb-list">
+                                    {% for item in photo %}
+									<div class="thumb">
+                                        <a href="{{ item.file.url }}" class="lightbox" data-lightbox-group="gallery">
+                                            {% thumbnail item.file "400x400" crop="center" quality=80 as im %}
+                                            <img src="{{ im.url }}" alt="">
+                                            {% endthumbnail %}
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+								</div>
+							</div>
+						</section>

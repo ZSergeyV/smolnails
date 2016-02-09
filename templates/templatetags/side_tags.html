@@ -1,0 +1,10 @@
+								<div class="sidebar-widget sidebar-tags">
+									<h3 class="widget-title">Метки</h3>
+									<div class="widget-content">
+										<ul>
+                                        {% for tag in tags %}
+											<li><a href="{% url 'tags' tag.slug %}">{{ tag.name }}</a></li>
+                                        {% endfor %}
+										</ul>
+									</div>
+								</div>

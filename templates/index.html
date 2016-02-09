@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load extratags %}
+{% block meta %}
+    {% autoescape off %}{% include 'meta.html' %}{% endautoescape %}
+        <meta name="keywords" content="ногтевой сервис Смоленск, укрепление ногтей, ногти, наращивание ногтей гелием, дизайн ногтей, дизайн ногтей Смоленск, маникюр, фото, лак для ногтей, гель лак, дизайн, салон красоты, шеллак, Смоленск, френч, французский маникюр">
+        <meta name="description" content="Сайт мастера ногтевого сервиса. Услуги ногтевого сервиса: маникюр, укрепление ногтей, дизайн ногтей, наращивание и моделирование по приятным ценам.">
+        <meta property="og:title" content="Сайт мастера ногтевого сервиса"/>
+        <meta property="og:site_name" content="SmolNails"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://smolnails.ru"/>
+        <meta property="og:description" content="Приглашаю Вас посетить мастера ногтевого сервиса в Смоленске"/>
+        <meta property="og:image" content="http://beatyspot.zsergey.lclients.ru/static/favicons/mstile-310x310.png"/>
+        <link rel="image_src" href="http://beatyspot.zsergey.lclients.ru/static/favicons/mstile-310x310.png" />
+
+{% endblock %}
+{% block title %}SmolNails - Cайт мастера ногтевого сервиса{% endblock %}
+{% block content %}
+		<div id="wrapper">
+            {% slider_tag %}
+			<div id="core">
+				<div id="page-content">
+					<div class="various-content">
+                        {% services_tag %}
+                        {% gallery_tag %}
+                        {% blog_tag %}
+                        {% testimonials_tag %}
+                        {% brands_tag %}
+					</div>
+				</div>
+			</div>
+            {% footer_tag %}
+		</div>
+{% endblock %}

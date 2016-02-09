@@ -1,0 +1,21 @@
+{% load thumbnail %}
+
+									<div class="article-related">
+										<h2 class="heading-2 m-small">Статьи по теме</h2>
+										<div class="row">
+                                            {% for item in posts %}
+											<div class="col-sm-4">
+												<article class="c-article">
+													<div class="article-image">
+                                                        <a href="{% url 'post' item.slug %}">
+                                                        {% thumbnail item.image '500x350' crop="center" quality=80 as im %}
+                                                            <img src="{{ im.url }}" alt="{{ item.title }}">
+                                                        {% endthumbnail %}
+                                                        </a>
+                                                    </div>
+													<h3 class="article-title"><a href="{% url 'post' item.slug %}">{{ item.title }}</a></h3>
+												</article>
+											</div>
+                                            {% endfor %}
+										</div>
+									</div>
